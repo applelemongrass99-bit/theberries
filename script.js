@@ -14,6 +14,9 @@ Book.prototype.info = function () {
 
 const books = []
 const bookList = document.querySelector("#book-list")
+const addBookBtn = document.querySelector("#add-book-btn")
+const newBookDialog = document.querySelector("#new-book-dialog")
+const cancelBookDialogBtn = document.querySelector("#cancel-book-dialog-btn")
 const newBookForm = document.querySelector("#new-book-form")
 const titleInput = document.querySelector("#title")
 const authorInput = document.querySelector("#author")
@@ -49,13 +52,20 @@ function displayBooks() {
 addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 310);
 addBookToLibrary("Dune", "Frank Herbert", 412);
 displayBooks();
+addBookBtn.addEventListener("click", () => newBookDialog.showModal());
 newBookForm.addEventListener("submit", (event) => {
 	event.preventDefault();
 	const title = titleInput.value;
 	const author = authorInput.value;
 	const pages = pagesInput.value;
 	addBookToLibrary(title, author, pages);
-	displayBooks()
+	displayBooks();
+	newBookForm.reset();
+	newBookDialog.close();
+});
+cancelBookDialogBtn.addEventListener("click", () => {
+	newBookForm.reset();
+	newBookDialog.close();
 });
 
 
