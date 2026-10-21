@@ -12,10 +12,15 @@ export default function BookCard({ book, onToggleRead, onDelete }: BookCardProps
 			<h2>{book.title}</h2>
 			<p>authored by {book.author}</p>
 			<p>{book.pages} pages</p>
-			<button onClick={onToggleRead}>
+			<button
+				className={book.read ? "toggle-read is-read" : "toggle-read"}
+				onClick={onToggleRead}
+			>
 				{book.read ? "have read" : "have not read"}
 			</button>
-			<button onClick={onDelete}>Delete Book</button>
+			<button className="delete-btn" onClick={onDelete}>
+				Delete Book
+			</button>
 		</div>
 	);
 }
